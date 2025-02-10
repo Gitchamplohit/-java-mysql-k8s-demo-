@@ -55,7 +55,7 @@ cd java-mysql-k8s-demo
 4. Access the application at:
    http://localhost:35622/users
 
-### **3️⃣ ☸️ Deploy on Kubernetes (Minikube)
+### **3️⃣ ☸️ Deploy on Kubernetes (Minikube)****
 1️. Start Minikube 
     ```sh
     minikube start
@@ -72,7 +72,6 @@ cd java-mysql-k8s-demo
    ```sh
    curl http://minikube-ip:35622/users
 
-
 5. Use Minikube Tunnel (Optional)
    If you want to map the service to localhost instead of Minikube’s IP:
    ```sh
@@ -83,11 +82,10 @@ cd java-mysql-k8s-demo
 
 
 
-
 📜 API Endpoints
-Method	Endpoint	Description
-GET	    /users	    Get all users
-POST	/users	    Add a new user
+Method	     Endpoint	       Description
+ GET	      /users      	   Get all users
+ POST	      /users      	   Add a new user
 Example Request:
 
 ### **Verifying the Deployment**
@@ -106,3 +104,4 @@ To delete Kubernetes resources:
  ```sh
  kubectl delete all --all
  minikube stop
+
