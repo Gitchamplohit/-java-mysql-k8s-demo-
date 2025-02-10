@@ -46,13 +46,20 @@
         <scope>test</scope>
     </dependency>
 </dependencies>
-   <build>
+<build>
     <plugins>
         <!-- Spring Boot Maven Plugin -->
         <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${spring-boot.version}</version>  <!-- Explicit version added -->
+            <version>${spring-boot.version}</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>repackage</goal>  <!-- Ensures executable JAR -->
+                    </goals>
+                </execution>
+            </executions>
         </plugin>
 
         <!-- Maven Compiler Plugin (Ensures Java 17 is used) -->
@@ -67,5 +74,6 @@
         </plugin>
     </plugins>
 </build>
+
 </project>
 
