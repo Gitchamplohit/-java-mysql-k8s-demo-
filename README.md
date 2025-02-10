@@ -31,6 +31,10 @@ Ensure you have the following installed:
 
 To ensure proper access to the application, configure firewall rules to allow necessary inbound ports.
 - Ensure that the **MySQL port** is only accessible from the security group of the EC2 instance where the web app is hosted.
+  
+Security Best practice for avoiding hardcoding sensitive info.  
+- Avoided hardcoding the **MySql DB Root password** instead used it as ENV in the **.env** file
+- Avoided pushing **.env** file to the repo by adding it in the **.gitingore** file
 
 ## **🔧 Setup & Run Locally**
 
