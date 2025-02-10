@@ -8,7 +8,7 @@ It uses **MySQL** as the database, is containerized with **Docker**, and deploye
 
 ## What the App Does
 
-The application provides a RESTful API to manage users. It allows users to submit their details (name and email) via a POST request to the /users endpoint. The application processes the input and stores it in a MySQL database. Users can also retrieve stored user data via a GET request.
+The application provides a RESTful API to manage users. It allows users to submit their details (name and email) via a POST request to the `/users` endpoint. The application processes the input and stores it in a MySQL database. Users can also retrieve stored user data via a GET request.
 
 ---
 
@@ -20,88 +20,100 @@ The application provides a RESTful API to manage users. It allows users to submi
 ✅ Accessible via http://localhost:35622/users
 
 ---
-## ** Prerequisites **
+## **Prerequisites**
 Ensure you have the following installed:
 
 1. Docker & Docker Compose
 2. Minikube
 3. kubectl
 
-## ** Security & Network Configuration **
+## **Security & Network Configuration**
 
-To ensure proper access to the application, configure firewall rules to allow necessary inbound ports
-*Ensure that Inbound of MySQL port is allowing only the security group of Ec2 instance where webapp hosted*
+To ensure proper access to the application, configure firewall rules to allow necessary inbound ports.
+- Ensure that the **MySQL port** is only accessible from the security group of the EC2 instance where the web app is hosted.
 
 ## **🔧 Setup & Run Locally**
 
 ### **1️⃣ Clone the Repository**
-```sh
-git clone https://github.com/Gitchamplohit/java-mysql-k8s-demo.git
-cd java-mysql-k8s-demo
+ ```sh
+ git clone https://github.com/Gitchamplohit/java-mysql-k8s-demo.git
+ cd java-mysql-k8s-demo
+ ```
 
-### **2️⃣ 🐳 Containerization with Docker Compose **
-1. Build the Docker image :
+### **2️⃣🐳 Containerization with Docker Compose**
+
+1. Build the Docker image:
    ```sh
    docker build -t springboot-mysql-app .
+   ```
    
 2. Start the services using Docker Compose:
    ```sh
    docker-compose up -d
+   ```
 
 3. Verify the running containers:
    ```sh
    docker ps
+   ```
 
 4. Access the application at:
    http://localhost:35622/users
 
-### **3️⃣ ☸️ Deploy on Kubernetes (Minikube)****
-1️. Start Minikube 
-    ```sh
-    minikube start
-    
-2️. Deploy Spring Boot App with MySQL
-    ```sh
-    kubectl apply -f k8s-deployment.yml
+### **3️⃣ ☸️ Deploy on Kubernetes (Minikube)**
 
-3️. Enable Autoscaling (Web Server)
-    ```sh
-    kubectl autoscale deployment springboot-app --cpu-percent=50 --min=1 --max=5
-
-4. Access the app from the Host Machine
+1. Start Minikube:
+   ```sh
+   minikube start
+   ```
+   
+2. Deploy the Spring Boot App with MySQL:
+   ```sh
+   kubectl apply -f k8s-deployment.yml
+   ```
+   
+3. Enable Autoscaling (Web Server):
+   ```sh
+   kubectl autoscale deployment springboot-app --cpu-percent=50 --min=1 --max=5
+   ```
+   
+4. Access the app from the Host Machine:
    ```sh
    curl http://minikube-ip:35622/users
-
-5. Use Minikube Tunnel (Optional)
+   ```
+   
+5. Use Minikube Tunnel (Optional):
    If you want to map the service to localhost instead of Minikube’s IP:
    ```sh
    minikube tunnel
-
+   ```
    Then, access it at:
-➡️ http://localhost:35622/users
+   ➡️ http://localhost:35622/users
 
+## 📜 API Endpoints
 
+| Method  | Endpoint   | Description       |
+|---------|-----------|-------------------|
+| GET     | /users    | Get all users     |
+| POST    | /users    | Add a new user    |
 
-📜 API Endpoints
-Method	     Endpoint	       Description
- GET	      /users      	   Get all users
- POST	      /users      	   Add a new user
-Example Request:
-
-### **Verifying the Deployment**
+### **Example Request:**
 ```sh
-curl -X POST http://localhost:8080/users \
+curl -X POST http://localhost:35622/users \
      -H "Content-Type: application/json" \
-     -d '{"name": "John Doe"}'
+     -d '{"name": "John Doe", "email": "john@example.com"}'
+```
 
-## Cleanup
+## **Cleanup**
 
 To stop and remove Docker Compose containers:
  ```sh
  docker-compose down
+ ```
 
 To delete Kubernetes resources:
  ```sh
  kubectl delete all --all
  minikube stop
+ ```
 
