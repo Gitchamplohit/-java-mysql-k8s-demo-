@@ -19,7 +19,7 @@ spec:
             - containerPort: 8080
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://mysql-service:3306/mysql
+              value: jdbc:mysql://mysql-service:3306/mysql   ##springboot webapp connects to "mysql db table" in the mysql db or we can mention "mydb", which we created using docker-compose same should be entered in app.properties SPRING_DATASOURCE_URL for k8s deployment
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
