@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: springboot-app
-          image: myapp
+          image: springboot-mysql-app
           ports:
             - containerPort: 8080
           env:
@@ -23,8 +23,11 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
-              value: rootpassword
----
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_ROOT_PASSWORD
+---                    
 apiVersion: v1
 kind: Service
 metadata:
@@ -36,6 +39,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
+      nodePort: 35622
   type: NodePort
 
 ---
