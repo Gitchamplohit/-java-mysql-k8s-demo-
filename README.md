@@ -4,7 +4,7 @@
 
 ## 📌 Overview
 This project is a **Java-Spring Boot** web application that provides a REST API for user management.
-It uses **MySQL** as the database, is containerized with **Docker**, and deployed using **Kubernetes (Minikube)**.
+It uses **MySQL** as the database, is containerized with **Docker**, and is deployed using **Kubernetes (Minikube)**.
 
 ## What the App Does
 
@@ -82,16 +82,16 @@ To ensure proper access to the application, configure firewall rules to allow ne
    
 4. Access the app from the Host Machine:
    ```sh
-   curl http://minikube-ip:nodeport/users
+   curl http://minikube-ip:31200/users
    ```
    
 5. Use Minikube Tunnel (Optional):
    If you want to map the service to localhost instead of Minikube’s IP:
    ```sh
-   minikube tunnel
+   kubectl port-forward svc/springboot-service 8080:8080
    ```
    Then, access it at:
-   ➡️ http://localhost:8080/users
+   ➡️ curl http://localhost:8080/users
 
 ## 📜 API Endpoints
 
@@ -102,7 +102,7 @@ To ensure proper access to the application, configure firewall rules to allow ne
 
 ### **Example Request:**
 ```sh
-curl -X POST http://localhost:35622/users \
+curl -X POST http://minikube-ip:31200/users \
      -H "Content-Type: application/json" \
      -d '{"name": "John Doe", "email": "john@example.com"}'
 ```
