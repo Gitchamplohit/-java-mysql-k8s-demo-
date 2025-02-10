@@ -42,9 +42,12 @@ To ensure proper access to the application, configure firewall rules to allow ne
 
 ### **2️⃣🐳 Containerization with Docker Compose**
 
-1. Build the Docker image:
+1. Build, tag and push the Docker image dockerhub:
    ```sh
    docker build -t springboot-mysql-app .
+   docker tag <dockerhub-username>/springboot-mysql-app:latest
+   docker login
+   docker push <dockerhub-username>/springboot-mysql-app:latest
    ```
    
 2. Start the services using Docker Compose:
@@ -58,7 +61,7 @@ To ensure proper access to the application, configure firewall rules to allow ne
    ```
 
 4. Access the application at:
-   http://localhost:35622/users
+   http://instance-ip:8080/users
 
 ### **3️⃣ ☸️ Deploy on Kubernetes (Minikube)**
 
@@ -79,7 +82,7 @@ To ensure proper access to the application, configure firewall rules to allow ne
    
 4. Access the app from the Host Machine:
    ```sh
-   curl http://minikube-ip:35622/users
+   curl http://minikube-ip:nodeport/users
    ```
    
 5. Use Minikube Tunnel (Optional):
@@ -88,7 +91,7 @@ To ensure proper access to the application, configure firewall rules to allow ne
    minikube tunnel
    ```
    Then, access it at:
-   ➡️ http://localhost:35622/users
+   ➡️ http://localhost:8080/users
 
 ## 📜 API Endpoints
 
