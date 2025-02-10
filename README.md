@@ -33,8 +33,8 @@ To ensure proper access to the application, configure firewall rules to allow ne
 - Ensure that the **MySQL port** is only accessible from the security group of the EC2 instance where the web app is hosted.
   
 Security Best practice for avoiding hardcoding sensitive info.  
-- Avoided hardcoding the **MySql DB Root password** instead used it as ENV in the **.env** file
-- Avoided pushing **.env** file to the repo by adding it in the **.gitingore** file
+- Avoid hardcoding the **MySql DB Root password** instead used it as ENV in the **.env** file for docker-compose and **secret** for k8s deployment.
+- Avoid pushing **.env** file to the repo by adding it in the **.gitingore** file
 
 ## **🔧 Setup & Run Locally**
 
