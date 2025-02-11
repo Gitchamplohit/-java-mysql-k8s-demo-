@@ -76,7 +76,8 @@ Security Best practice for avoiding hardcoding sensitive info.
    
 2. Deploy the Spring Boot App with MySQL:
    ```sh
-   kubectl apply -f k8s-deployment.yml
+   kubectl apply -f  k8s-mysql-deployment.yml
+   kubectl apply -f k8s-springbootapp-deployment.yml
    ```
    
 3. Enable Autoscaling (Web Server):
