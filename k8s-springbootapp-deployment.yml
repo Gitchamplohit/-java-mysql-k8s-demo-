@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: springboot-app
-          image: lohitdockersmith/springboot-mysql-app:latest
+          image: lohitdockersmith/springboot-mysql-app:latest ## use your dockerhub image, which was tagged and pushed
           ports:
             - containerPort: 8080
           env:
