@@ -17,6 +17,14 @@ spec:
           image: lohitdockersmith/springboot-mysql-app:latest ## use your dockerhub image, which was tagged and pushed
           ports:
             - containerPort: 8080
+          resources:
+           requests: 
+             cpu: "200m"  ## min cpu that the pod gets
+             mem: "250Mi"
+           limits:
+             cpu: "500m"   ## max cpu the pod can have, if cpu usage goes above the k8s will slows down the container cpu usage but will not kill pod
+             mem: "500Mi"  ## max mem the pod can have, if exceeds k8s kills the pod and restarts (if policy mentntioned)-OOMKilled
+          restartPolicy: always
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://mysql-service:3306/mysql   ##springboot webapp connects to "mysql db table" in the mysql db or we can mention "mydb", which we created using docker-compose same should be entered in app.properties SPRING_DATASOURCE_URL for k8s deployment
